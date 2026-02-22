@@ -1,0 +1,80 @@
+#!/bin//bash
+#installing maven and java
+#echo "swatching to root user to install maven and java"
+#sudo -su
+echo "updating the system"
+sudo yum update -y
+#checking java installed or not
+if ! java -version &>/dev/null; then
+    echo "Java is not installed. Installing Java..."
+    sudo yum install java-21-openjdk-devel -y
+    if [ $? -eq 0 ]; then
+        echo "Java has been installed successfully."
+    else
+        echo "Failed to install Java. Please check the error messages above."
+    fi
+else
+    echo "Java is already installed." $(java -version)
+fi
+#installing dependency software unzip tree git
+echo "installing dependency software unzip tree git"
+sudo yum install unzip tree git wget -y
+if [ $? -eq 0 ]; then
+    echo "Dependency software has been installed successfully."
+else
+    echo "Failed to install dependency software. Please check the error messages above."
+fi
+#switching to root user to install maven and java
+#echo "switching to root user to install maven and java"
+#sudo -su
+#moving to opt directory
+cd /opt
+#downloading maven
+echo "downloading maven"
+sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.12/binaries/apache-maven-3.9.12-bin.zip
+if [ $? -eq 0 ]; then
+    echo "Maven has been downloaded successfully."
+else
+    echo "Failed to download Maven. Please check the error messages above."
+fi
+#unziping maven
+ echo "unziping maven"
+sudo unzip apache-maven-3.9.12-bin.zip
+if [ $? -eq 0 ]; then
+    echo "Maven has been unzipped successfully."
+else
+    echo "Failed to unzip Maven. Please check the error messages above."
+fi
+#setting up environment variables for maven
+echo "setting up environment variables for maven"
+echo 'export M2_HOME=/opt/apache-maven-3.9.12' >> ~/.bash_profile
+echo 'export PATH=$PATH:$M2_HOME/bin' >> ~/.bash_profile
+source ~/.bash_profile
+if [ $? -eq 0 ]; then
+    echo "Environment variables for Maven have been set up successfully."
+else
+    echo "Failed to set up environment variables for Maven. Please check the error messages above."
+fi
+sleep 10
+#checking maven installed or not
+if ! mvn -version &>/dev/null; then
+    echo "Maven is not installed. Please check the installation steps above."
+else
+    echo "Maven is already installed." $(mvn -version)
+fi
+sleep 5
+#checking all packages installed or not
+echo "checking all packages installed or not"
+if ! java -version &>/dev/null; then
+    echo "Java is not installed. Please check the installation steps above."
+else
+    echo "Java is installed." $(java -version)
+fi
+if ! mvn -version &>/dev/null; then
+    echo "Maven is not installed. Please check the installation steps above."
+else
+    echo "Maven is installed." $(mvn -version)
+fi
+
+
+

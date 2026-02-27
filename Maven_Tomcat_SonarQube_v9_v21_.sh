@@ -174,11 +174,10 @@ verify_tomcat() {
 
 # ---------- Install SonarQube 9.6.1 ----------
 install_sonarqube_9.6.1() {
-
-    ensure_dependencies
-    Kernel_Parameters
-    install_java_17_version
     timezone
+    ensure_dependencies
+    install_java_17_version
+    Kernel_Parameters
 
     SONARQUBE_VERSION="9.6.1"
     SONARQUBE_ZIP="sonarqube-${SONARQUBE_VERSION}.zip"
@@ -207,11 +206,11 @@ install_sonarqube_9.6.1() {
 
 # ---------- Install SonarQube 26.x ----------
 install_sonarqube_26.2.0.119303() {
-
+    timezone
     ensure_dependencies
-    Kernel_Parameters
     install_java_21_version
-    timezone    
+    Kernel_Parameters
+        
 
     SONARQUBE_VERSION="26.2.0.119303"
     SONARQUBE_ZIP="sonarqube-${SONARQUBE_VERSION}.zip"

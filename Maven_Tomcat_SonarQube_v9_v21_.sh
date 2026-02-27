@@ -76,7 +76,10 @@ install_java_17_version() {
         rpm --import https://yum.corretto.aws/corretto.key
         curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
         dnf install -y java-17-amazon-corretto-devel --nogpgcheck
-        alternatives --config java
+        #alternatives --config java
+        # Prevent interactive Java alternatives prompt
+            alternatives --set java /usr/lib/jvm/java-17-amazon-corretto/bin/java
+            alternatives --set javac /usr/lib/jvm/java-17-amazon-corretto/bin/javac
     else
         echo "[INFO] Java 17 already installed."
     fi
@@ -89,6 +92,10 @@ install_java_21_version() {
         rpm --import https://yum.corretto.aws/corretto.key
         curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
         dnf install -y java-21-amazon-corretto-devel --nogpgcheck
+          # Prevent 'alternatives --config java' prompt
+            alternatives --set java /usr/lib/jvm/java-21-amazon-corretto/bin/java
+            alternatives --set javac /usr/lib/jvm/java-21-amazon-corretto/bin/javac
+
     else
         echo "[INFO] Java 21 already installed."
     fi

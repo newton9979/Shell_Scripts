@@ -193,6 +193,7 @@ install_sonarqube_9.6.1() {
 
     if ! id -u sonar >/dev/null; then
         useradd sonar
+        echo 'sonar   ALL=(ALL)       NOPASSWD: ALL' >> /etc/sudoers
     fi
 
     chown -R sonar:sonar "$SONARQUBE_DIR"
@@ -226,6 +227,7 @@ install_sonarqube_26.2.0.119303() {
 
     if ! id -u sonar >/dev/null; then
         useradd sonar
+        echo 'sonar   ALL=(ALL)       NOPASSWD: ALL' >> /etc/sudoers
     fi
 
     chown -R sonar:sonar "$SONARQUBE_DIR"

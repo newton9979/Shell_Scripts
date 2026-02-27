@@ -2,7 +2,7 @@
 # ============================================================
 # RHEL Environment Setup Script
 # Author: Newton
-# Date: 02/24/2026
+# Date: 02/27/2026
 # Installs:
 #   - Basic utilities (tree, zip, wget)
 #   - OpenJDK 21 (LTS)

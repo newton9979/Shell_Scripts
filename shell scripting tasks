@@ -1,0 +1,25 @@
+Unix Skills — Brief Interview Guide for Statements Resource
+1. Shell Scripting (KSH/Bash)
+Write, read, and debug shell scripts. Handle arguments, functions, conditionals, loops, and exit codes. Know how to source environment files.
+2. Process Management
+Run jobs in background (nohup, &), trap signals, use lock files to prevent duplicate runs, monitor and kill processes.
+3. File System Operations
+Navigate directories using dirname/basename, create paths (mkdir -p), set permissions (chmod, umask), manage temp files and cleanup.
+4. Text Processing
+Use awk, sed, grep, cut, tr to parse and transform text output — essential for processing log files, df output, and field extraction.
+5. I/O Redirection & Logging
+Redirect stdout/stderr to log files, use tee, write here-documents (<<EOF), and suppress output to /dev/null.
+6. Date & Time
+Format dates for log file naming and unique run IDs. Handle epoch time and date arithmetic.
+7. Disk & System Monitoring
+Use df/du, parse output with awk, implement threshold-based alerting logic in scripts.
+8. Makefile & Parallel Execution
+Understand targets, dependencies, and parallel jobs (make -j). Know how touch/status files enable resumable workflows.
+9. Environment Variables
+Export variables, use default value patterns (${VAR:-default}), detect runtime environment from variables or paths.
+10. Error Handling
+Check return codes ($?), track errors across steps, implement abort/cleanup logic on failure.
+11. Email Alerts
+Send email from scripts using mailx with dynamic subjects, body, and attachments based on success/failure.
+12. Authentication & Remote Execution
+Understand Kerberos (passwordless login), SSH for cross-server execution, service account usage.

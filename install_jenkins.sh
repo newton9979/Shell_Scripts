@@ -66,10 +66,10 @@ main() {
   echo "Then click: 'Install suggested plugins'."
   echo
   echo "Create the first admin user (per your note):"
-  echo "  Username: kkfunda"
-  echo "  Password: kkfunda"
-  echo "  Confirm:  kkfunda"
-  echo "  Full Name: KK FUNDA"
+  echo "  Username: username"
+  echo "  Password: password"
+  echo "  Confirm:  username"
+  echo "  Full Name: your full name"
   echo
   echo "Then: Save and Continue -> Save and Finish -> Start using Jenkins."
   echo "------------------------------------------------------------"

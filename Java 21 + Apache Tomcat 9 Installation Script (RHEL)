@@ -1,0 +1,83 @@
+#!/bin/bash
+# ============================================================
+# Java 21 + Apache Tomcat 9 Installation Script (RHEL)
+# Author: Newton
+# ============================================================
+
+set -euo pipefail
+
+# Must run as root
+if [[ $(id -u) -ne 0 ]]; then
+    echo "Please run as root."
+    exit 1
+fi
+
+# Variables
+JAVA_PACKAGE="java-21-openjdk-devel"
+
+TOMCAT_VERSION="9.0.115"
+TOMCAT_ZIP="apache-tomcat-${TOMCAT_VERSION}.zip"
+TOMCAT_DIR="/opt/apache-tomcat-${TOMCAT_VERSION}"
+TOMCAT_URL="https://dlcdn.apache.org/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/${TOMCAT_ZIP}"
+
+echo "========================================"
+echo "Updating system..."
+echo "========================================"
+yum update -y
+
+echo "========================================"
+echo "Installing dependencies..."
+echo "========================================"
+yum install -y wget unzip curl tree
+
+echo "========================================"
+echo "Installing Java 21..."
+echo "========================================"
+yum install -y ${JAVA_PACKAGE}
+
+echo "Java Version:"
+java -version
+
+echo "========================================"
+echo "Installing Apache Tomcat ${TOMCAT_VERSION}..."
+echo "========================================"
+
+cd /opt
+
+wget -q ${TOMCAT_URL}
+
+unzip -q ${TOMCAT_ZIP}
+
+rm -f ${TOMCAT_ZIP}
+
+chmod +x ${TOMCAT_DIR}/bin/*.sh
+
+ln -sf ${TOMCAT_DIR}/bin/startup.sh /usr/local/bin/startTomcat
+ln -sf ${TOMCAT_DIR}/bin/shutdown.sh /usr/local/bin/stopTomcat
+
+echo "========================================"
+echo "Starting Tomcat..."
+echo "========================================"
+
+${TOMCAT_DIR}/bin/startup.sh
+
+sleep 10
+
+echo "========================================"
+echo "Installation Completed Successfully"
+echo "========================================"
+
+echo "Java Version:"
+java -version
+
+echo
+echo "Tomcat Version:"
+${TOMCAT_DIR}/bin/version.sh
+
+echo
+echo "Tomcat Home: ${TOMCAT_DIR}"
+echo "Start Command : startTomcat"
+echo "Stop Command  : stopTomcat"
+echo
+echo "Access Tomcat:"
+echo "http://<EC2-PUBLIC-IP>:8080"
